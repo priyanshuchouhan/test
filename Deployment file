@@ -1,0 +1,20 @@
+file path ".github/workflows/deploy.yml "
+
+name: Deploy Application
+
+on:
+  workflow_run:
+    workflows: ["Docker Build & Push"]
+    types:
+      - completed
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Deploy Step
+      run: |
+        echo "Deploying application..."
+        # Example:
+        # ssh user@server "docker pull myapp && docker run -d myapp"
