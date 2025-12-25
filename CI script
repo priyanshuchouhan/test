@@ -1,0 +1,38 @@
+CI/CD Folder Structure
+
+.github/
+└── workflows/
+    ├── ci.yml        # Build & Test
+    ├── docker.yml    # Docker Image Build & Push
+    └── deploy.yml    # Deployment
+
+
+
+
+name: CI - Build and Test
+
+on:
+  pull_request:
+    branches:
+      - main
+  push:
+    branches:
+      - main
+
+jobs:
+  build-test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v4
+
+    - name: Run Build
+      run: |
+        echo "Building application..."
+        # Example: mvn clean install / npm install
+
+    - name: Run Tests
+      run: |
+        echo "Running tests..."
+        # Example: mvn test / npm test
